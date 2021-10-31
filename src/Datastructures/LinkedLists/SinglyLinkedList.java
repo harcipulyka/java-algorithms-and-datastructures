@@ -18,15 +18,21 @@ public class SinglyLinkedList <T extends Comparable>{
     private Node head;
 
     public void insert(T val) {
-        Node temp = head;
-        while (temp != null) temp = temp.next;
-        temp = new Node(val);
+        head = new Node(val, head);
     }
 
     public void remove(T val){
-        if (head == null) return;
+        if (head == null) return; //edge case, empty list
+
+        //edge case, head is the node to be deleted
+        if (head.val.equals(val)) {
+            head = head.next;
+            return;
+        }
+
         Node temp = head;
-        while (temp.next != null || temp.next.val.equals(val)) temp = temp.next;
+
+        while (temp.next != null && temp.next.val.equals(val)) temp = temp.next;
         if (temp.next == null) return;
         if (temp.next.next == null) temp.next = null;
         else temp.next = temp.next.next;
@@ -34,6 +40,7 @@ public class SinglyLinkedList <T extends Comparable>{
 
     @Override
     public String toString() {
+        if (this.isEmpty()) return null;
         StringBuilder b = new StringBuilder();
         Node temp = head;
         while (temp != null){

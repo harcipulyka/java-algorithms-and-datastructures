@@ -19,10 +19,12 @@ public class SinglyLinkedListTests {
 
     @Test
     public void insertTests(){
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 10; i++) {
             sll.insert(i);
         }
-        Assertions.assertTrue(true);
+        String expected = "9, 8, 7, 6, 5, 4, 3, 2, 1, 0";
+        String output = sll.toString();
+        Assertions.assertEquals(expected, output);
     }
 
     @Test
@@ -33,6 +35,7 @@ public class SinglyLinkedListTests {
         for (int i = 0; i < 1000; i++) {
             sll.remove(i);
         }
+        System.out.println(sll.toString());
         Assertions.assertTrue(sll.isEmpty());
     }
 
